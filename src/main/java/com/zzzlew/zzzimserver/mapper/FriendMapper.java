@@ -1,6 +1,6 @@
 package com.zzzlew.zzzimserver.mapper;
 
-import com.zzzlew.zzzimserver.pojo.vo.user.FriendRelationVO;
+import com.zzzlew.zzzimserver.pojo.vo.friend.FriendRelationVO;
 
 import java.util.List;
 

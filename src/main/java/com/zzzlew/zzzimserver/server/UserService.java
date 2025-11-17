@@ -24,4 +24,6 @@ public interface UserService {
 
     void pendingLogin(String token);
 
+    String refreshToken();
+
 }

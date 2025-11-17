@@ -2,9 +2,9 @@ package com.zzzlew.zzzimserver.server.impl;
 
 import com.zzzlew.zzzimserver.mapper.ApplyMapper;
 import com.zzzlew.zzzimserver.mapper.FriendMapper;
-import com.zzzlew.zzzimserver.pojo.dto.Apply.DealApplyDTO;
-import com.zzzlew.zzzimserver.pojo.dto.Apply.SendApplyDTO;
-import com.zzzlew.zzzimserver.pojo.vo.user.ApplyVO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
+import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.server.ApplyService;
 import com.zzzlew.zzzimserver.utils.UserHolder;
 import jakarta.annotation.Resource;

@@ -3,7 +3,7 @@ package com.zzzlew.zzzimserver.server.impl;
 import com.zzzlew.zzzimserver.mapper.FriendMapper;
 import com.zzzlew.zzzimserver.mapper.UserInfoMapper;
 import com.zzzlew.zzzimserver.pojo.dto.user.UserBaseDTO;
-import com.zzzlew.zzzimserver.pojo.vo.user.FriendRelationVO;
+import com.zzzlew.zzzimserver.pojo.vo.friend.FriendRelationVO;
 import com.zzzlew.zzzimserver.pojo.vo.user.UserSearchVO;
 import com.zzzlew.zzzimserver.server.FriendService;
 import com.zzzlew.zzzimserver.utils.UserHolder;

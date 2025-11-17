@@ -1,4 +1,4 @@
-package com.zzzlew.zzzimserver.pojo.vo.user;
+package com.zzzlew.zzzimserver.pojo.vo.apply;
 
 /**
  * @Auther: zzzlew

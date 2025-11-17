@@ -19,4 +19,5 @@ public class MessageConstant {
     public static final String PHONE_ALREADY_EXISTS = "手机号已存在";
     public static final String ALREADY_EXISTS = "已存在";
     public static final String TOKEN_NOT_FOUND = "登录过期，token不存在";
+    public static final String TOKEN_EXPIRED = "登录过期，请重新登录";
 }

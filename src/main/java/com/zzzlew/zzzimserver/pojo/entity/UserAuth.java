@@ -1,5 +1,6 @@
 package com.zzzlew.zzzimserver.pojo.entity;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
  * @Description: com.zzzlew.zzzimserver.pojo.entity
  * @version: 1.0
  */
+@Builder
 @Data
 public class UserAuth implements Serializable {
 

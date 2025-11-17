@@ -40,4 +40,25 @@ public class JwtUtil {
         return claims;
     }
 
+    // 校验token是否过期
+    public boolean isTokenExpired(String secretKey, String token) {
+        Claims claims = parseJWT(secretKey, token);
+        Date expiration = claims.getExpiration();
+        // 获取当前时间
+        Date now = new Date();
+        // 如果过期时间在当前时间之前，则token过期
+        return expiration.before(now);
+    }
+
+    // token的距离过期还剩多长时间
+    public long getExpirationTime(String secretKey, String token) {
+        Claims claims = parseJWT(secretKey, token);
+        Date expiration = claims.getExpiration();
+        // 获取当前时间
+        Date now = new Date();
+        // 过期时间减去当前时间，就是距离过期还剩多长时间
+        long remainMinutes = (expiration.getTime() - now.getTime()) / 60000;
+        return remainMinutes;
+    }
+
 }

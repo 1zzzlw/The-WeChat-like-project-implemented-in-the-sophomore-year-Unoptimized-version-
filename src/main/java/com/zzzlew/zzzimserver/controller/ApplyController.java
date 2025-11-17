@@ -1,8 +1,8 @@
 package com.zzzlew.zzzimserver.controller;
 
-import com.zzzlew.zzzimserver.pojo.dto.Apply.DealApplyDTO;
-import com.zzzlew.zzzimserver.pojo.dto.Apply.SendApplyDTO;
-import com.zzzlew.zzzimserver.pojo.vo.user.ApplyVO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
+import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.result.Result;
 import com.zzzlew.zzzimserver.server.ApplyService;
 import jakarta.annotation.Resource;

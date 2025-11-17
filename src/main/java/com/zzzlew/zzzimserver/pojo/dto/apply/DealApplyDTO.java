@@ -1,4 +1,4 @@
-package com.zzzlew.zzzimserver.pojo.dto.Apply;
+package com.zzzlew.zzzimserver.pojo.dto.apply;
 
 import lombok.Data;
 

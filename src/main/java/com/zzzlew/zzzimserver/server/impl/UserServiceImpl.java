@@ -9,6 +9,7 @@ import com.zzzlew.zzzimserver.constant.MessageConstant;
 import com.zzzlew.zzzimserver.exception.*;
 import com.zzzlew.zzzimserver.mapper.UserInfoMapper;
 import com.zzzlew.zzzimserver.mapper.UserMapper;
+import com.zzzlew.zzzimserver.pojo.dto.user.UserBaseDTO;
 import com.zzzlew.zzzimserver.pojo.dto.user.UserLoginDTO;
 import com.zzzlew.zzzimserver.pojo.dto.user.UserRegisterDTO;
 import com.zzzlew.zzzimserver.pojo.entity.UserAuth;
@@ -18,6 +19,7 @@ import com.zzzlew.zzzimserver.properties.Jwtproperties;
 import com.zzzlew.zzzimserver.server.UserService;
 import com.zzzlew.zzzimserver.utils.JwtUtil;
 import com.zzzlew.zzzimserver.utils.RegexUtils;
+import com.zzzlew.zzzimserver.utils.UserHolder;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -192,16 +194,30 @@ public class UserServiceImpl implements UserService {
     public void pendingLogin(String token) {
         // 校验token是否存在
         String tokenInfoKey = LOGIN_USER_KEY + token;
+        // 判断token是否过期
+        if (jwtUtil.isTokenExpired(jwtproperties.getSecretKey(), token)) {
+            throw new TokenExpiredException(MessageConstant.TOKEN_EXPIRED);
+        }
         Boolean hasKey = stringRedisTemplate.hasKey(tokenInfoKey);
         if (!hasKey) {
             throw new TokenNotFoundException(MessageConstant.TOKEN_NOT_FOUND);
         }
     }
 
+    @Override
+    public String refreshToken() {
+        // 拿到当前登录用户的信息
+        UserBaseDTO user = UserHolder.getUser();
+        UserAuth userAuth = UserAuth.builder().userId(user.getId()).username(user.getUsername())
+            .account(user.getAccount()).avatar(user.getAvatar()).build();
+        UserLoginVO userLoginVO = generateAndStoreWithUpdateToken(userAuth);
+        return userLoginVO.getToken();
+    }
+
     public UserLoginVO generateAndStoreWithUpdateToken(UserAuth userAuth) {
         // 生成Token令牌并返回
         Map<String, Object> claims = new HashMap<>();
-        claims.put(JwtClaimsConstant.USER_ID, userAuth.getId());
+        claims.put(JwtClaimsConstant.USER_ID, userAuth.getUserId());
         String token = jwtUtil.createJWT(jwtproperties.getSecretKey(), jwtproperties.getExpiration(), claims);
 
         Long userId = userAuth.getUserId();

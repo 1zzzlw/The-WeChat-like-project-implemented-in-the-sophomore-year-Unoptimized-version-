@@ -1,6 +1,6 @@
 package com.zzzlew.zzzimserver.server;
 
-import com.zzzlew.zzzimserver.pojo.vo.user.FriendRelationVO;
+import com.zzzlew.zzzimserver.pojo.vo.friend.FriendRelationVO;
 import com.zzzlew.zzzimserver.pojo.vo.user.UserSearchVO;
 
 import java.util.List;

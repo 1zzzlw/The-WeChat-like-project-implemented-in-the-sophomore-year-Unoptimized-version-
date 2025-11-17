@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zzzlew.zzzimserver.mapper.FriendMapper">
     <select id="selectFriendList"
-            resultType="com.zzzlew.zzzimserver.pojo.vo.user.FriendRelationVO">
+            resultType="com.zzzlew.zzzimserver.pojo.vo.friend.FriendRelationVO">
         select u.id, u.username, u.avatar, f.remark, f.relation_status as relationStatus
         from friend_relation f
                  join user_info u on

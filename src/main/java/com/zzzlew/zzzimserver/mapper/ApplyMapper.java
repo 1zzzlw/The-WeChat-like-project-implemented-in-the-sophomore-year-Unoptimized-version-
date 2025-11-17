@@ -1,8 +1,8 @@
 package com.zzzlew.zzzimserver.mapper;
 
-import com.zzzlew.zzzimserver.pojo.dto.Apply.DealApplyDTO;
-import com.zzzlew.zzzimserver.pojo.dto.Apply.SendApplyDTO;
-import com.zzzlew.zzzimserver.pojo.vo.user.ApplyVO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
+import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 
 import java.util.List;
 

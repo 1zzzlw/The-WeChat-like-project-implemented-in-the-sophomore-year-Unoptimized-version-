@@ -31,6 +31,8 @@ public class LoginController {
 
         UserLoginVO userLoginVO = userService.login(userLoginDTO);
 
+        log.info("登录成功，当前登录用户信息：{}", userLoginVO);
+
         return Result.success(userLoginVO);
     }
 

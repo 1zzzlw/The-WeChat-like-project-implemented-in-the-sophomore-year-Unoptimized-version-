@@ -17,7 +17,8 @@ spring:
           time-between-eviction-runs: 10s
 jwt:
   secret-key: qwertyuiopasdfghjklzxcvbnmzzzlew
-  expiration: 7200000
+  # token过期时间，单位毫秒，默认7天
+  expiration: 604800000
   token-name: Authorization
 mybatis:
   #mapper配置文件

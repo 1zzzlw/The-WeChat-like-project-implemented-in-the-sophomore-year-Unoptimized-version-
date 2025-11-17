@@ -8,7 +8,7 @@
         values (#{fromUserId}, #{toUserId}, #{applyMsg})
     </insert>
 
-    <select id="getApplyList" resultType="com.zzzlew.zzzimserver.pojo.vo.user.ApplyVO">
+    <select id="getApplyList" resultType="com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO">
         select f.apply_id,
                f.from_user_id,
                u.avatar,
