@@ -5,6 +5,7 @@ import com.zzzlew.zzzimserver.mapper.MessageMapper;
 import com.zzzlew.zzzimserver.pojo.dto.message.MessageDTO;
 import com.zzzlew.zzzimserver.pojo.vo.message.MessageVO;
 import com.zzzlew.zzzimserver.server.MessageService;
+import com.zzzlew.zzzimserver.server.WebSocketService;
 import com.zzzlew.zzzimserver.utils.UserHolder;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -25,6 +26,8 @@ public class MessageServiceImpl implements MessageService {
 
     @Resource
     private MessageMapper messageMapper;
+    @Resource
+    private WebSocketService webSocketService;
 
     @Override
     public MessageVO sendMessage(MessageDTO messageDTO) {
@@ -42,11 +45,13 @@ public class MessageServiceImpl implements MessageService {
 
         messageDTO.setMsgType(1);
 
+        MessageVO messageVO = BeanUtil.copyProperties(messageDTO, MessageVO.class);
+        messageVO.setSendTime(LocalDateTime.now());
+
+        webSocketService.sendMessage(messageVO);
         // 保存消息到数据库
         messageMapper.saveMessage(messageDTO);
 
-        MessageVO messageVO = BeanUtil.copyProperties(messageDTO, MessageVO.class);
-        messageVO.setSendTime(LocalDateTime.now());
         return messageVO;
     }
 

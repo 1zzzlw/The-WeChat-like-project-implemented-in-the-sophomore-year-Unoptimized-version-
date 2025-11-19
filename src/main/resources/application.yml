@@ -1,3 +1,7 @@
+server:
+  port: 8080
+serializer:
+  algorithm: json
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -35,3 +39,9 @@ logging:
       mapper: debug
       server: info
       controller: info
+
+# websocket配置
+netty:
+  websocket:
+    # 端口
+    port: 8000
