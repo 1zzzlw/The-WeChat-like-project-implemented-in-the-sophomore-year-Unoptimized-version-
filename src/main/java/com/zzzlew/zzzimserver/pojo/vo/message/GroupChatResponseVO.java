@@ -1,7 +1,8 @@
 package com.zzzlew.zzzimserver.pojo.vo.message;
 
-import com.zzzlew.zzzimserver.pojo.AbstractResponseMessage;
 import com.zzzlew.zzzimserver.pojo.Message;
+
+import java.io.Serializable;
 
 /**
  * @Auther: zzzlew
@@ -9,7 +10,7 @@ import com.zzzlew.zzzimserver.pojo.Message;
  * @Description: com.zzzlew.zzzimserver.pojo.vo.message
  * @version: 1.0
  */
-public class GroupChatResponseVO extends AbstractResponseMessage {
+public class GroupChatResponseVO extends Message implements Serializable {
 
     @Override
     public int getMessageType() {

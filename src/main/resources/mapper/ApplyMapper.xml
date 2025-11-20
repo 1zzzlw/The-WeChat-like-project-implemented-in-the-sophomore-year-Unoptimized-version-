@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zzzlew.zzzimserver.mapper.ApplyMapper">
 
-    <insert id="sendApply">
+    <insert id="sendApply" useGeneratedKeys="true" keyProperty="applyId">
         insert into friend_apply (from_user_id, to_user_id, apply_msg)
         values (#{fromUserId}, #{toUserId}, #{applyMsg})
     </insert>

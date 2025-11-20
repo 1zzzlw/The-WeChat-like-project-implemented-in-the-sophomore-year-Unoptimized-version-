@@ -31,12 +31,15 @@ public class ApplyServiceImpl implements ApplyService {
     private FriendMapper friendMapper;
 
     @Override
-    public void sendApply(SendApplyDTO sendApplyDTO) {
+    public Long sendApply(SendApplyDTO sendApplyDTO) {
         // 获得当前登录用户id
         Long userId = UserHolder.getUser().getId();
         log.info("当前登录用户id：{}", userId);
         sendApplyDTO.setFromUserId(userId);
         applyMapper.sendApply(sendApplyDTO);
+        // 打印好友申请id
+        log.info("好友申请表id: {}", sendApplyDTO.getApplyId());
+        return sendApplyDTO.getApplyId();
     }
 
     @Override

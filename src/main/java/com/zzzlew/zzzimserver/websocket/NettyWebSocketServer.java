@@ -96,7 +96,7 @@ public class NettyWebSocketServer {
                     pipeline.addLast(new MessageDispatcherHandler());
                     // 30 秒没有读写操作时触发 IdleState.READER_IDLE 事件
                     // 这个心跳处理器因为只有读时间，所以只在入站的时候处理，出战的时候虽然经过但是没有处理业务
-                    pipeline.addLast(new IdleStateHandler(30, 0, 0, TimeUnit.SECONDS));
+                    pipeline.addLast(new IdleStateHandler(90, 0, 0, TimeUnit.SECONDS));
                     // 心跳处理器，用于处理心跳包
                     pipeline.addLast(new HeartBeatHandler());
                     // 连接成功处理器，用于处理连接成功事件，此时用户上线

@@ -19,7 +19,7 @@ public interface ApplyService {
      * 
      * @param sendApplyDTO 好友申请信息
      */
-    void sendApply(SendApplyDTO sendApplyDTO);
+    Long sendApply(SendApplyDTO sendApplyDTO);
 
     /**
      * 获取好友申请列表

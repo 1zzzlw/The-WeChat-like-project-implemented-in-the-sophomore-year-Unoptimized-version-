@@ -31,10 +31,10 @@ public class ApplyController {
      * @param sendApplyDTO 好友申请信息
      */
     @PostMapping("/send")
-    public Result<Object> sendApply(@RequestBody SendApplyDTO sendApplyDTO) {
+    public Result<Long> sendApply(@RequestBody SendApplyDTO sendApplyDTO) {
         log.info("添加好友，申请信息：{}", sendApplyDTO);
-        applyService.sendApply(sendApplyDTO);
-        return Result.success();
+        Long applyId = applyService.sendApply(sendApplyDTO);
+        return Result.success(applyId);
     }
 
     /**

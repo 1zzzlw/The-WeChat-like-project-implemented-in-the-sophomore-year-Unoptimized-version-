@@ -18,7 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 public class GroupChatHandler extends SimpleChannelInboundHandler<GroupChatRequestDTO> {
 
     @Override
-    protected void channelRead0(ChannelHandlerContext channelHandlerContext, GroupChatRequestDTO groupChatRequestDTO) throws Exception {
+    protected void channelRead0(ChannelHandlerContext ctx, GroupChatRequestDTO groupChatRequestDTO)
+        throws Exception {
 
     }
 

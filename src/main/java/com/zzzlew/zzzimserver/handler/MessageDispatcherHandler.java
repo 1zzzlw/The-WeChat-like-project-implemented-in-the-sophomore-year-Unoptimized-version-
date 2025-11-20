@@ -1,5 +1,6 @@
 package com.zzzlew.zzzimserver.handler;
 
+import com.zzzlew.zzzimserver.handler.messageHandler.ApplySendHandler;
 import com.zzzlew.zzzimserver.handler.messageHandler.GroupChatHandler;
 import com.zzzlew.zzzimserver.handler.messageHandler.PrivateChatHandler;
 import com.zzzlew.zzzimserver.pojo.Message;
@@ -30,6 +31,7 @@ public class MessageDispatcherHandler extends ChannelInboundHandlerAdapter {
         // 注册消息类型与对应的 Handler
         handlerMap.put(Message.PrivateChatRequestDTO, new PrivateChatHandler());
         handlerMap.put(Message.GroupChatRequestDTO, new GroupChatHandler());
+        handlerMap.put(Message.ApplyRequestDTO, new ApplySendHandler());
     }
 
     @Override

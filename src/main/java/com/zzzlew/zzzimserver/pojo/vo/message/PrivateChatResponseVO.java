@@ -1,11 +1,11 @@
 package com.zzzlew.zzzimserver.pojo.vo.message;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.zzzlew.zzzimserver.pojo.AbstractResponseMessage;
-import com.zzzlew.zzzimserver.pojo.dto.message.PrivateChatRequestDTO;
+import com.zzzlew.zzzimserver.pojo.Message;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class PrivateChatResponseVO extends AbstractResponseMessage {
+public class PrivateChatResponseVO extends Message implements Serializable {
 
     private String conversationId;
 
@@ -33,24 +33,6 @@ public class PrivateChatResponseVO extends AbstractResponseMessage {
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime sendTime;
-
-    // 构造器：成功响应（携带业务数据）
-    public PrivateChatResponseVO(PrivateChatRequestDTO request) {
-        // 调用父类带数据的构造器
-        super(request);
-        // 复制请求中的业务字段到响应
-        this.conversationId = request.getConversationId();
-        this.senderId = request.getSenderId();
-        this.receiverId = request.getReceiverId();
-        this.msgType = request.getMsgType();
-        this.content = request.getContent();
-    }
-
-    // 构造器：失败响应
-    public PrivateChatResponseVO(String errorMsg) {
-        // 调用父类失败构造器
-        super(errorMsg);
-    }
 
     @Override
     public int getMessageType() {

@@ -13,6 +13,8 @@ import java.io.Serializable;
 @Data
 public class SendApplyDTO implements Serializable {
 
+    private Long applyId;
+
     private Long fromUserId;
 
     private Long toUserId;

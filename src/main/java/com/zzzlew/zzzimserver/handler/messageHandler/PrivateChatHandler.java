@@ -1,5 +1,6 @@
 package com.zzzlew.zzzimserver.handler.messageHandler;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.zzzlew.zzzimserver.pojo.dto.message.PrivateChatRequestDTO;
 import com.zzzlew.zzzimserver.pojo.vo.message.PrivateChatResponseVO;
 import com.zzzlew.zzzimserver.utils.ChannelManageUtil;
@@ -8,6 +9,8 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
+
+import java.time.LocalDateTime;
 
 /**
  * @Auther: zzzlew
@@ -39,12 +42,14 @@ public class PrivateChatHandler extends SimpleChannelInboundHandler<PrivateChatR
         Channel channel = ChannelManageUtil.getChannel(receiverId);
         if (channel != null) {
             // 发送消息
-            channel.writeAndFlush(new PrivateChatResponseVO(privateChatRequestDTO));
-            log.info("响应消息已写入发送队列");
+            PrivateChatResponseVO privateChatResponseVO =
+                BeanUtil.copyProperties(privateChatRequestDTO, PrivateChatResponseVO.class);
+            privateChatResponseVO.setSendTime(LocalDateTime.now());
+            channel.writeAndFlush(privateChatResponseVO);
+            log.info("已向接收者{}的channel写入私聊消息", receiverId);
         } else {
             // 接收者不在线
             log.info("接收者不在线");
         }
     }
-
 }

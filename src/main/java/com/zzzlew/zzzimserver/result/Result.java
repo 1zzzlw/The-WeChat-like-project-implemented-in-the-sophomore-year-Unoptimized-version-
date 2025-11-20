@@ -12,12 +12,9 @@ import java.io.Serializable;
  */
 @Data
 public class Result<T> implements Serializable {
-    public static final int SUCCESS_CODE = 1;
-    public static final int ERROR_CODE = 0;
-
-    private Integer code; //编码：1成功，0和其它数字为失败
-    private String msg; //错误信息
-    private T data; //数据
+    private Integer code; // 编码：1成功，0和其它数字为失败
+    private String msg; // 错误信息
+    private T data; // 数据
 
     public static <T> Result<T> success() {
         Result<T> result = new Result<T>();

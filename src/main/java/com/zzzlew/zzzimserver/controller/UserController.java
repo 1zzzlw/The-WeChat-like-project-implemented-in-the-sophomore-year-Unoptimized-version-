@@ -22,7 +22,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public Result<Object> register(@RequestBody UserRegisterDTO userRegisterDTO) {
+    public Result<String> register(@RequestBody UserRegisterDTO userRegisterDTO) {
         log.info("注册用户信息为 {}", userRegisterDTO);
         String token = userService.register(userRegisterDTO);
         return Result.success(token);
