@@ -32,7 +32,13 @@ public class ConversationImpl implements ConversationService {
         // 获得当前登录用户id
         Long userId = UserHolder.getUser().getId();
         // 根据用户id和会话id查询登录用户的会话列表
-        List<ConversationVO> conversationVOList = conversationMapper.selectListByUserIdAndConversationIdList(userId, conversationIdList);
+        List<ConversationVO> conversationVOList =
+            conversationMapper.selectListByUserIdAndConversationIdList(userId, conversationIdList);
         return conversationVOList;
+    }
+
+    @Override
+    public ConversationVO createGroupConversation(ConversationVO conversationVO) {
+        return null;
     }
 }

@@ -15,4 +15,17 @@
         </foreach>
     </select>
 
+    <update id="updateConversationStatus">
+        update conversation
+        set latest_msg      = #{content},
+            latest_msg_time = #{sendTime},
+            status          = 1,
+            unread_count    = CASE
+                                  WHEN user_id = #{receiverId}
+                                      THEN unread_count + 1
+                                  ELSE unread_count
+                END
+        where id = #{conversationId}
+    </update>
+
 </mapper>

@@ -41,13 +41,13 @@ public class ConversationVO {
     /**
      * 最后一条消息
      */
-    private String lastMsg;
+    private String latestMsg;
 
     /**
      * 最后一条消息时间
      */
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime lastMsgTime;
+    private LocalDateTime latestMsgTime;
 
     /**
      * 会话状态

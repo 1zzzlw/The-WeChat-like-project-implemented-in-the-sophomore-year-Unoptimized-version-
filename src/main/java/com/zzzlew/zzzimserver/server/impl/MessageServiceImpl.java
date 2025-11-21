@@ -1,11 +1,11 @@
 package com.zzzlew.zzzimserver.server.impl;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.zzzlew.zzzimserver.mapper.ConversationMapper;
 import com.zzzlew.zzzimserver.mapper.MessageMapper;
 import com.zzzlew.zzzimserver.pojo.dto.message.MessageDTO;
 import com.zzzlew.zzzimserver.pojo.vo.message.MessageVO;
 import com.zzzlew.zzzimserver.server.MessageService;
-import com.zzzlew.zzzimserver.server.WebSocketService;
 import com.zzzlew.zzzimserver.utils.UserHolder;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -27,7 +27,7 @@ public class MessageServiceImpl implements MessageService {
     @Resource
     private MessageMapper messageMapper;
     @Resource
-    private WebSocketService webSocketService;
+    private ConversationMapper conversationMapper;
 
     @Override
     public MessageVO sendMessage(MessageDTO messageDTO) {
@@ -46,12 +46,14 @@ public class MessageServiceImpl implements MessageService {
         messageDTO.setMsgType(1);
 
         MessageVO messageVO = BeanUtil.copyProperties(messageDTO, MessageVO.class);
-        messageVO.setSendTime(LocalDateTime.now());
+        LocalDateTime sendTime = LocalDateTime.now();
+        messageVO.setSendTime(sendTime);
 
         // 保存消息到数据库
         messageMapper.saveMessage(messageDTO);
 
-        // TODO 修改会话列表中的一些状态，未读消息数量，最后一条消息时间，最后一条消息内容，以及显示状态。
+        // 修改会话列表中的状态，未读消息数量，最后一条消息时间，最后一条消息内容，以及显示状态。
+        conversationMapper.updateConversationStatus(conversationId, messageDTO.getContent(), sendTime, receiverId);
 
         return messageVO;
     }

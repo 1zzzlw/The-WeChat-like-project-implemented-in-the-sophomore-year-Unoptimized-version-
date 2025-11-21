@@ -5,10 +5,7 @@ import com.zzzlew.zzzimserver.result.Result;
 import com.zzzlew.zzzimserver.server.ConversationService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +35,19 @@ public class ConversationController {
         log.info("会话ID列表：{}", conversationIdList);
         List<ConversationVO> conversationVOList = conversationService.getConversationList(conversationIdList);
         return Result.success(conversationVOList);
+    }
+
+    /**
+     * 创建群聊
+     * 
+     * @param conversationVO 会话信息
+     * @return 创建的会话信息
+     */
+    @PostMapping("/create")
+    public Result<ConversationVO> createGroupConversation(@RequestBody ConversationVO conversationVO) {
+        log.info("创建群聊：{}", conversationVO);
+        ConversationVO createdConversationVO = conversationService.createGroupConversation(conversationVO);
+        return Result.success(createdConversationVO);
     }
 
 }

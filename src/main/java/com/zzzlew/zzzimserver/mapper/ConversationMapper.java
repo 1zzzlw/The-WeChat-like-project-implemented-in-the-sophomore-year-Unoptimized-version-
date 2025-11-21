@@ -2,6 +2,7 @@ package com.zzzlew.zzzimserver.mapper;
 
 import com.zzzlew.zzzimserver.pojo.vo.conversation.ConversationVO;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -19,5 +20,14 @@ public interface ConversationMapper {
      * @return 会话列表
      */
     List<ConversationVO> selectListByUserIdAndConversationIdList(Long userId, List<String> conversationIdList);
+
+    /**
+     * 更新会话状态
+     *
+     * @param conversationId 会话id
+     * @param content 最后一条消息内容
+     * @param sendTime 最后一条消息时间
+     */
+    void updateConversationStatus(String conversationId, String content, LocalDateTime sendTime, Long receiverId);
 
 }
