@@ -30,18 +30,33 @@
     </update>
 
     <insert id="sendGroupApply">
-        insert into group_apply (user_id, member_id, group_name, user_avatar)
+        insert into group_apply (user_id, member_id, conversation_id, group_name, user_avatar)
         values
         <foreach collection="friendIdList" item="memberId" separator=",">
-            (#{userId}, #{memberId}, #{groupApplyDTO.groupName}, #{groupApplyDTO.userAvatar})
+            (#{userId}, #{memberId}, #{groupApplyDTO.conversationId}, #{groupApplyDTO.groupName},
+            #{groupApplyDTO.userAvatar})
         </foreach>
     </insert>
 
-    <select id="getGroupApplyList" resultType="com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO"
-            parameterType="java.lang.Long">
-        select id, user_id, user_avatar, group_name, status
-        from group_apply
-        where member_id = #{userId}
-    </select>
+     <select id="getGroupApplyList" resultType="com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO"
+             parameterType="java.lang.Long">
+         select conversation_id, user_id, user_avatar, group_name, status
+         from group_apply
+         where member_id = #{userId}
+     </select>
 
+    <insert id="insertGroupMember"
+            parameterType="com.zzzlew.zzzimserver.pojo.dto.user.GroupMemberDTO">
+        insert into group_member (group_id, user_id, role)
+        values (#{groupId}, #{userId}, #{role})
+    </insert>
+
+    <update id="dealGroupApply"
+            parameterType="com.zzzlew.zzzimserver.pojo.dto.apply.DealGroupDTO">
+        update group_apply
+        set status = #{status}
+        where conversation_id = #{conversationId}
+          and user_id = #{userId}
+          and member_id = #{memberId}
+    </update>
 </mapper>

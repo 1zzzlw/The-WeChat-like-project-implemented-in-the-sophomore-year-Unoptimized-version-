@@ -7,21 +7,32 @@ import java.time.LocalDateTime;
 
 /**
  * @Auther: zzzlew
- * @Date: 2025/11/21 - 11 - 21 - 21:30
+ * @Date: 2025/11/22 - 11 - 22 - 21:45
  * @Description: com.zzzlew.zzzimserver.pojo.vo.conversation
  * @version: 1.0
  */
 @Data
-public class ConversationVO {
+public class GroupConversationVO {
+
     /**
-     * 会话ID
+     * 群聊ID
      */
     private String id;
 
     /**
-     * 关联ID
+     * 群聊名称
      */
-    private Long relatedId;
+    private String groupName;
+
+    /**
+     * 群聊头像
+     */
+    private String groupAvatar;
+
+    /**
+     * 群主ID
+     */
+    private Long ownerId;
 
     /**
      * 是否置顶
@@ -29,12 +40,7 @@ public class ConversationVO {
     private Integer isTop;
 
     /**
-     * 未读消息数量
-     */
-    private Integer unreadCount;
-
-    /**
-     * 最后一条消息
+     * 最新消息
      */
     private String latestMsg;
 

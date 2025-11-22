@@ -17,6 +17,12 @@ import java.io.Serializable;
 @Slf4j
 @EqualsAndHashCode(callSuper = true)
 public class GroupApplyResponseVO extends Message implements Serializable {
+
+    /**
+     * 群会话ID
+     */
+    private String conversationId;
+
     /**
      * 群主ID
      */

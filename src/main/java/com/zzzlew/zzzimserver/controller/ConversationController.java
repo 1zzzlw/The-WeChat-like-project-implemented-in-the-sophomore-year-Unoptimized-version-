@@ -1,8 +1,10 @@
 package com.zzzlew.zzzimserver.controller;
 
+import com.zzzlew.zzzimserver.pojo.dto.apply.DealGroupDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.conversation.ConversationVO;
+import com.zzzlew.zzzimserver.pojo.vo.conversation.GroupConversationVO;
 import com.zzzlew.zzzimserver.result.Result;
 import com.zzzlew.zzzimserver.server.ApplyService;
 import com.zzzlew.zzzimserver.server.ConversationService;
@@ -50,13 +52,13 @@ public class ConversationController {
      * @return 创建的会话信息
      */
     @PostMapping("/create/{friendId}")
-    public Result<Object> createGroupConversation(@PathVariable String friendId,
+    public Result<String> createGroupConversation(@PathVariable String friendId,
         @RequestBody GroupApplyDTO groupApplyDTO) {
         log.info("创建群聊：{}，群聊名称：{}", friendId, groupApplyDTO.getGroupName());
         List<Long> friendIdList = Arrays.stream(friendId.split(",")).map(Long::valueOf).toList();
         log.info("好友ID列表：{}", friendIdList);
-        applyService.createGroupConversation(friendIdList, groupApplyDTO);
-        return Result.success();
+        String conversationId = applyService.createGroupConversation(friendIdList, groupApplyDTO);
+        return Result.success(conversationId);
     }
 
     /**
@@ -71,15 +73,26 @@ public class ConversationController {
     }
 
     /**
-     * 同意群聊申请
+     * 同意入群申请
      *
-     * @param groupApplyDTO 群聊申请信息
+     * @param dealGroupDTO 入群申请处理信息
      */
-    @PostMapping("/groupApply/agree")
-    public Result<Object> agreeGroupApply(@RequestBody GroupApplyDTO groupApplyDTO) {
-        log.info("同意群聊申请：{}", groupApplyDTO);
-        // applyService.dealGroupApply(groupApplyDTO);
+    @PostMapping("/groupApply/deal")
+    public Result<Object> dealGroupApply(@RequestBody DealGroupDTO dealGroupDTO) {
+        log.info("处理群聊申请：{}", dealGroupDTO);
+        applyService.dealGroupApply(dealGroupDTO);
         return Result.success();
+    }
+
+    /**
+     * 获取群聊列表
+     *
+     * @return 群聊列表
+     */
+    @GetMapping("/groupMemberList")
+    public Result<List<GroupConversationVO>> getGroupMemberList() {
+        List<GroupConversationVO> groupConversationVOList = conversationService.getGroupMemberList();
+        return Result.success(groupConversationVOList);
     }
 
 }

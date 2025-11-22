@@ -4,27 +4,30 @@ import lombok.Data;
 
 /**
  * @Auther: zzzlew
- * @Date: 2025/11/22 - 11 - 22 - 17:36
+ * @Date: 2025/11/22 - 11 - 22 - 19:31
  * @Description: com.zzzlew.zzzimserver.pojo.dto.apply
  * @version: 1.0
  */
 @Data
-public class GroupApplyDTO {
-
+public class DealGroupDTO {
     /**
-     * 群会话id
-     * 
+     * 群会话ID
      */
     private String conversationId;
 
     /**
-     * 群主头像
+     * 群主id
      */
-    private String userAvatar;
+    private Long userId;
 
     /**
-     * 群聊名称
+     * 群成员id
      */
-    private String groupName;
+    private Long memberId;
+
+     /**
+      * 入群状态
+      */
+    private Integer status;
 
 }

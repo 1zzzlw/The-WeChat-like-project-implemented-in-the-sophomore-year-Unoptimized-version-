@@ -2,6 +2,7 @@ package com.zzzlew.zzzimserver.server.impl;
 
 import com.zzzlew.zzzimserver.mapper.ConversationMapper;
 import com.zzzlew.zzzimserver.pojo.vo.conversation.ConversationVO;
+import com.zzzlew.zzzimserver.pojo.vo.conversation.GroupConversationVO;
 import com.zzzlew.zzzimserver.server.ConversationService;
 import com.zzzlew.zzzimserver.utils.UserHolder;
 import jakarta.annotation.Resource;
@@ -35,6 +36,16 @@ public class ConversationImpl implements ConversationService {
         List<ConversationVO> conversationVOList =
             conversationMapper.selectListByUserIdAndConversationIdList(userId, conversationIdList);
         return conversationVOList;
+    }
+
+    @Override
+    public List<GroupConversationVO> getGroupMemberList() {
+        // 获得当前登录用户id
+        Long userId = UserHolder.getUser().getId();
+        // 根据用户id和会话id查询登录用户的会话列表
+        List<GroupConversationVO> groupConversationVOList =
+            conversationMapper.selectGroupListByUserIdAndConversationId(userId);
+        return groupConversationVOList;
     }
 
 }

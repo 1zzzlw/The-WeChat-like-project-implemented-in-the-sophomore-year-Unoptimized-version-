@@ -25,4 +25,5 @@ public class MessageDTO implements Serializable {
     private Integer msgType;
 
     private String content;
+
 }

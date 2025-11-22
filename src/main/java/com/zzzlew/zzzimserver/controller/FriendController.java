@@ -27,8 +27,8 @@ public class FriendController {
     private FriendService friendService;
 
     /**
-     * 获取好友列表
-     *  TODO 优化的时候改成分页查询吧
+     * 获取好友列表 TODO 优化的时候改成分页查询吧
+     * 
      * @return 好友列表
      */
     @GetMapping("/list")

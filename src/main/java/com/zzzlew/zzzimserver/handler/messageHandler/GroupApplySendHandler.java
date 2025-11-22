@@ -31,6 +31,7 @@ public class GroupApplySendHandler extends SimpleChannelInboundHandler<GroupAppl
         String invitedIds = groupApplyRequestDTO.getInvitedIds();
         List<Long> ids = JSON.parseArray(invitedIds, Long.class);
         GroupApplyResponseVO groupApplyResponseVO = new GroupApplyResponseVO();
+        groupApplyResponseVO.setConversationId(groupApplyRequestDTO.getConversationId());
         groupApplyResponseVO.setUserId(userId);
         groupApplyResponseVO.setUserAvatar(groupApplyRequestDTO.getUserAvatar());
         groupApplyResponseVO.setGroupName(groupApplyRequestDTO.getGroupName());

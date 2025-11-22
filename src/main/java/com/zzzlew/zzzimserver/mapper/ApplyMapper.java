@@ -1,8 +1,10 @@
 package com.zzzlew.zzzimserver.mapper;
 
 import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.DealGroupDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.user.GroupMemberDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
 
@@ -47,12 +49,26 @@ public interface ApplyMapper {
      */
     void sendGroupApply(Long userId, List<Long> friendIdList, GroupApplyDTO groupApplyDTO);
 
-     /**
-      * 获取群聊申请列表
-      *
-      * @param userId 用户id
-      * @return 群聊申请列表
-      */
+    /**
+     * 获取群聊申请列表
+     *
+     * @param userId 用户id
+     * @return 群聊申请列表
+     */
     List<GroupApplyVO> getGroupApplyList(Long userId);
+
+    /**
+     * 插入群成员
+     *
+     * @param groupMemberDTO 群成员信息
+     */
+    void insertGroupMember(GroupMemberDTO groupMemberDTO);
+
+    /**
+     * 处理群聊申请
+     *
+     * @param dealGroupDTO 群聊申请处理信息
+     */
+    void dealGroupApply(DealGroupDTO dealGroupDTO);
 
 }
