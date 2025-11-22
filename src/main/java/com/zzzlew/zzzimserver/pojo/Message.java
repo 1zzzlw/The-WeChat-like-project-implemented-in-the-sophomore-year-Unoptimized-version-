@@ -1,9 +1,11 @@
 package com.zzzlew.zzzimserver.pojo;
 
 import com.zzzlew.zzzimserver.pojo.dto.apply.ApplyRequestDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyRequestDTO;
 import com.zzzlew.zzzimserver.pojo.dto.message.GroupChatRequestDTO;
 import com.zzzlew.zzzimserver.pojo.dto.message.PrivateChatRequestDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyResponseVO;
+import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyResponseVO;
 import com.zzzlew.zzzimserver.pojo.vo.message.GroupChatResponseVO;
 import com.zzzlew.zzzimserver.pojo.vo.message.PrivateChatResponseVO;
 import lombok.Data;
@@ -37,6 +39,9 @@ public abstract class Message implements Serializable {
     public static final int ApplyRequestDTO = 5;
     public static final int ApplyResponseVO = 6;
 
+    public static final int GroupApplyRequestDTO = 7;
+    public static final int GroupApplyResponseVO = 8;
+
     /**
      * 根据消息类型字节，获得对应的消息 class
      *
@@ -54,6 +59,8 @@ public abstract class Message implements Serializable {
         messageClasses.put(GroupChatResponseVO, GroupChatResponseVO.class);
         messageClasses.put(ApplyRequestDTO, ApplyRequestDTO.class);
         messageClasses.put(ApplyResponseVO, ApplyResponseVO.class);
+        messageClasses.put(GroupApplyRequestDTO, GroupApplyRequestDTO.class);
+        messageClasses.put(GroupApplyResponseVO, GroupApplyResponseVO.class);
     }
 
 }

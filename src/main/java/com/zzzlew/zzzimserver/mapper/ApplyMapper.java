@@ -1,6 +1,7 @@
 package com.zzzlew.zzzimserver.mapper;
 
 import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
@@ -42,9 +43,9 @@ public interface ApplyMapper {
      *
      * @param userId 用户id
      * @param friendIdList 好友ID列表
-     * @param groupName 群聊名称
+     * @param groupApplyDTO 群聊申请信息
      */
-    void sendGroupApply(Long userId, List<Long> friendIdList, String groupName, String avatar);
+    void sendGroupApply(Long userId, List<Long> friendIdList, GroupApplyDTO groupApplyDTO);
 
      /**
       * 获取群聊申请列表

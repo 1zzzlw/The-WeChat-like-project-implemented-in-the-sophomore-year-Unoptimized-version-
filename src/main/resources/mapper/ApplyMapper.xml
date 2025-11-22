@@ -30,10 +30,10 @@
     </update>
 
     <insert id="sendGroupApply">
-        insert into group_apply (user_id, member_id, group_name)
+        insert into group_apply (user_id, member_id, group_name, user_avatar)
         values
         <foreach collection="friendIdList" item="memberId" separator=",">
-            (#{userId}, #{memberId}, #{groupName}, #{avatar})
+            (#{userId}, #{memberId}, #{groupApplyDTO.groupName}, #{groupApplyDTO.userAvatar})
         </foreach>
     </insert>
 

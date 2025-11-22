@@ -3,6 +3,7 @@ package com.zzzlew.zzzimserver.server.impl;
 import com.zzzlew.zzzimserver.mapper.ApplyMapper;
 import com.zzzlew.zzzimserver.mapper.FriendMapper;
 import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
@@ -76,18 +77,19 @@ public class ApplyServiceImpl implements ApplyService {
 
     /**
      * 发送群聊申请
-     * 
+     *
      * @param friendIdList 好友ID列表
-     * @param groupName 群聊名称
+     * @param groupApplyDTO 群聊申请信息
      */
     @Override
-    public void createGroupConversation(List<Long> friendIdList, String groupName) {
+    public void createGroupConversation(List<Long> friendIdList, GroupApplyDTO groupApplyDTO) {
         // 获得当前登录用户id
         Long userId = UserHolder.getUser().getId();
         // 获得用户头像
         String avatar = UserHolder.getUser().getAvatar();
+        groupApplyDTO.setUserAvatar(avatar);
         // 插入群聊表
-        applyMapper.sendGroupApply(userId, friendIdList, groupName, avatar);
+        applyMapper.sendGroupApply(userId, friendIdList, groupApplyDTO);
     }
 
     @Override

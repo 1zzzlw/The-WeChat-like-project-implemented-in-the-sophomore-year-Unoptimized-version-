@@ -1,5 +1,6 @@
 package com.zzzlew.zzzimserver.controller;
 
+import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.conversation.ConversationVO;
 import com.zzzlew.zzzimserver.result.Result;
@@ -45,15 +46,16 @@ public class ConversationController {
      * 创建群聊
      *
      * @param friendId 好友ID
-     * @param groupName 群聊名称
+     * @param groupApplyDTO 群聊申请信息
      * @return 创建的会话信息
      */
     @PostMapping("/create/{friendId}")
-    public Result<Object> createGroupConversation(@PathVariable String friendId, @RequestParam String groupName) {
-        log.info("创建群聊：{}，群聊名称：{}", friendId, groupName);
+    public Result<Object> createGroupConversation(@PathVariable String friendId,
+        @RequestBody GroupApplyDTO groupApplyDTO) {
+        log.info("创建群聊：{}，群聊名称：{}", friendId, groupApplyDTO.getGroupName());
         List<Long> friendIdList = Arrays.stream(friendId.split(",")).map(Long::valueOf).toList();
         log.info("好友ID列表：{}", friendIdList);
-        applyService.createGroupConversation(friendIdList, groupName);
+        applyService.createGroupConversation(friendIdList, groupApplyDTO);
         return Result.success();
     }
 
@@ -66,6 +68,18 @@ public class ConversationController {
     public Result<List<GroupApplyVO>> getGroupApplyList() {
         List<GroupApplyVO> groupApplyVOList = applyService.getGroupApplyList();
         return Result.success(groupApplyVOList);
+    }
+
+    /**
+     * 同意群聊申请
+     *
+     * @param groupApplyDTO 群聊申请信息
+     */
+    @PostMapping("/groupApply/agree")
+    public Result<Object> agreeGroupApply(@RequestBody GroupApplyDTO groupApplyDTO) {
+        log.info("同意群聊申请：{}", groupApplyDTO);
+        // applyService.dealGroupApply(groupApplyDTO);
+        return Result.success();
     }
 
 }

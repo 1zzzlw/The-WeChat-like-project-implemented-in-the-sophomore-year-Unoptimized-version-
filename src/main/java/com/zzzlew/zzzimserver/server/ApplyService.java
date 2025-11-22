@@ -1,6 +1,7 @@
 package com.zzzlew.zzzimserver.server;
 
 import com.zzzlew.zzzimserver.pojo.dto.apply.DealApplyDTO;
+import com.zzzlew.zzzimserver.pojo.dto.apply.GroupApplyDTO;
 import com.zzzlew.zzzimserver.pojo.dto.apply.SendApplyDTO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.ApplyVO;
 import com.zzzlew.zzzimserver.pojo.vo.apply.GroupApplyVO;
@@ -38,11 +39,11 @@ public interface ApplyService {
 
     /**
      * 发送群聊申请
-     * 
-     * @param friendIdList 好友ID列表
-     * @param groupName 群聊名称
+     *
+     * @param friendIdList  好友ID列表
+     * @param groupApplyDTO 群聊申请信息
      */
-    void createGroupConversation(List<Long> friendIdList, String groupName);
+    void createGroupConversation(List<Long> friendIdList, GroupApplyDTO groupApplyDTO);
 
      /**
       * 获取群聊申请列表
